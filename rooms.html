@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đặt Phòng Học Nhóm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Chương trình Quản lý Đặt Phòng Học Nhóm</h2>
+
+        <div id="toast" class="toast hidden"></div>
+
+        <div class="statistics-box">
+            <p>Tổng số lượt đặt: <span id="total-bookings">0</span></p>
+            <p>Hình thức Thường: <span id="normal-bookings">0</span></p>
+            <p>Hình thức Ưu tiên: <span id="priority-bookings">0</span></p>
+        </div>
+
+        <div class="action-bar">
+            <button id="btn-open-form" class="btn btn-primary">Thêm lượt đặt phòng</button>
+        </div>
+
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th>Mã đặt phòng</th>
+                    <th>Họ tên</th>
+                    <th>Mã SV</th>
+                    <th>Phòng</th>
+                    <th>Số TV</th>
+                    <th>Ngày dùng</th>
+                    <th>Ca học</th>
+                    <th>Hình thức</th>
+                    <th>Email</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="booking-list">
+                </tbody>
+        </table>
+    </div>
+
+    <div id="booking-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modal-title">Thêm Lượt Đặt Phòng Mới</h3>
+            <form id="booking-form" novalidate>
+                <input type="hidden" id="form-mode" value="create">
+                <input type="hidden" id="editing-id" value="">
+
+                <div class="form-group">
+                    <label for="booking-code">Mã đặt phòng (PH-9999):</label>
+                    <input type="text" id="booking-code" placeholder="Ví dụ: PH-2046">
+                    <span class="error-message" id="error-code"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="booking-name">Họ tên người đặt:</label>
+                    <input type="text" id="booking-name" placeholder="Nhập đầy đủ họ tên">
+                    <span class="error-message" id="error-name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="student-id">Mã sinh viên (SV + 6 số):</label>
+                    <input type="text" id="student-id" placeholder="Ví dụ: SV123456">
+                    <span class="error-message" id="error-id"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="room-select">Phòng học:</label>
+                    <select id="room-select">
+                        <option value="">-- Chọn phòng học --</option>
+                        <option value="A101">A101</option>
+                        <option value="A102">A102</option>
+                        <option value="B201">B201</option>
+                        <option value="B202">B202</option>
+                        <option value="C303">C303</option>
+                    </select>
+                    <span class="error-message" id="error-room"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="member-count">Số lượng thành viên (2 - 8 người):</label>
+                    <input type="number" id="member-count" placeholder="Nhập số lượng">
+                    <span class="error-message" id="error-members"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="use-date">Ngày sử dụng phòng:</label>
+                    <input type="date" id="use-date">
+                    <span class="error-message" id="error-date"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Ca học:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="study-slot" value="Ca 1"> Ca 1</label>
+                        <label><input type="radio" name="study-slot" value="Ca 2"> Ca 2</label>
+                        <label><input type="radio" name="study-slot" value="Ca 3"> Ca 3</label>
+                    </div>
+                    <span class="error-message" id="error-slot"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Hình thức đặt:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="booking-type" value="Thường"> Thường</label>
+                        <label><input type="radio" name="booking-type" value="Ưu tiên"> Ưu tiên</label>
+                    </div>
+                    <span class="error-message" id="error-type"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-email">Email liên hệ (...@sv.haui.edu.vn):</label>
+                    <input type="email" id="contact-email" placeholder="username@sv.haui.edu.vn">
+                    <span class="error-message" id="error-email"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="booking-purpose">Mục đích sử dụng:</label>
+                    <textarea id="booking-purpose" rows="2" placeholder="Nhập mục đích sử dụng phòng..."></textarea>
+                    <span class="error-message" id="error-purpose"></span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="btn-submit-form" class="btn btn-success">Lưu dữ liệu</button>
+                    <button type="button" id="btn-close-form" class="btn btn-secondary">Hủy bỏ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
