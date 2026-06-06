@@ -10,6 +10,7 @@
 
 <body>
 
+    <!-- Container chính chứa toàn bộ giao diện quản lý -->
     <div class="container">
         <h2>Chương trình Quản lý Đặt Phòng Học Nhóm</h2>
 
@@ -21,6 +22,7 @@
             <p>Hình thức Ưu tiên: <span id="priority-bookings">0</span></p>
         </div>
 
+        <!-- Thanh hành động: nút mở form tạo booking -->
         <div class="action-bar">
             <button id="btn-open-form" class="btn btn-primary">Thêm lượt đặt phòng</button>
         </div>
@@ -37,39 +39,48 @@
                     <th>Ca học</th>
                     <th>Hình thức</th>
                     <th>Email</th>
-                    <th>Hành động</th>
+                    <th>Mục đích</th> <th>Hành động</th>
                 </tr>
             </thead>
+
             <tbody id="booking-list">
-                </tbody>
+            </tbody>
+
         </table>
     </div>
 
+    <!-- Modal chứa form thêm / sửa booking. Ban đầu ẩn bằng class 'hidden' -->
     <div id="booking-modal" class="modal hidden">
         <div class="modal-content">
             <h3 id="modal-title">Thêm Lượt Đặt Phòng Mới</h3>
+            <!-- Form chính: id = booking-form, novalidate để xử lý validate bằng JS -->
             <form id="booking-form" novalidate>
+                <!-- Hai input ẩn để lưu trạng thái form: mode (create/edit) và id của booking đang edit -->
                 <input type="hidden" id="form-mode" value="create">
                 <input type="hidden" id="editing-id" value="">
 
+                <!-- Mã đặt phòng: format PH-9999. Hiển thị lỗi ở span #error-code -->
                 <div class="form-group">
                     <label for="booking-code">Mã đặt phòng (PH-9999):</label>
                     <input type="text" id="booking-code" placeholder="Ví dụ: PH-2046">
                     <span class="error-message" id="error-code"></span>
                 </div>
 
+                <!-- Họ tên: chỉ chữ và khoảng trắng, kiểm tra độ dài trong JS -->
                 <div class="form-group">
                     <label for="booking-name">Họ tên người đặt:</label>
                     <input type="text" id="booking-name" placeholder="Nhập đầy đủ họ tên">
                     <span class="error-message" id="error-name"></span>
                 </div>
 
+                <!-- Mã sinh viên: VD SV123456 -> kiểm tra bằng regex trong script -->
                 <div class="form-group">
                     <label for="student-id">Mã sinh viên (SV + 6 số):</label>
                     <input type="text" id="student-id" placeholder="Ví dụ: SV123456">
                     <span class="error-message" id="error-id"></span>
                 </div>
 
+                <!-- Dropdown chọn phòng. Giá trị trống nghĩa là chưa chọn -->
                 <div class="form-group">
                     <label for="room-select">Phòng học:</label>
                     <select id="room-select">
@@ -83,18 +94,21 @@
                     <span class="error-message" id="error-room"></span>
                 </div>
 
+                <!-- Số thành viên: input type=number, kiểm tra khoảng 2-8 trong JS -->
                 <div class="form-group">
                     <label for="member-count">Số lượng thành viên (2 - 8 người):</label>
                     <input type="number" id="member-count" placeholder="Nhập số lượng">
                     <span class="error-message" id="error-members"></span>
                 </div>
 
+                <!-- Ngày sử dụng: loại date, JS sẽ đảm bảo không quá 14 ngày kể từ hôm nay -->
                 <div class="form-group">
                     <label for="use-date">Ngày sử dụng phòng:</label>
                     <input type="date" id="use-date">
                     <span class="error-message" id="error-date"></span>
                 </div>
 
+                <!-- Ca học: radio group, phải chọn 1 -->
                 <div class="form-group">
                     <label>Ca học:</label>
                     <div class="radio-group">
@@ -105,6 +119,7 @@
                     <span class="error-message" id="error-slot"></span>
                 </div>
 
+                <!-- Hình thức đặt: Thường hoặc Ưu tiên -->
                 <div class="form-group">
                     <label>Hình thức đặt:</label>
                     <div class="radio-group">
@@ -114,6 +129,7 @@
                     <span class="error-message" id="error-type"></span>
                 </div>
 
+                <!-- Email liên hệ: phải kết thúc bằng @sv.haui.edu.vn -->
                 <div class="form-group">
                     <label for="contact-email">Email liên hệ (...@sv.haui.edu.vn):</label>
                     <input type="email" id="contact-email" placeholder="username@sv.haui.edu.vn">
@@ -126,6 +142,7 @@
                     <span class="error-message" id="error-purpose"></span>
                 </div>
 
+                <!-- Nút lưu / hủy: submit sẽ được JS xử lý -->
                 <div class="form-actions">
                     <button type="submit" id="btn-submit-form" class="btn btn-success">Lưu dữ liệu</button>
                     <button type="button" id="btn-close-form" class="btn btn-secondary">Hủy bỏ</button>

@@ -1,4 +1,5 @@
 :root {
+    /* Biến CSS toàn cục: dễ thay đổi theme màu sắc ở một chỗ */
     --primary-color: #007bff;
     --success-color: #28a745;
     --danger-color: #dc3545;
@@ -8,6 +9,7 @@
 }
 
 body {
+    /* Thiết lập kiểu chữ và nền chung cho trang */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     margin: 0;
@@ -16,6 +18,7 @@ body {
 }
 
 .container {
+    /* Hộp chính chứa nội dung ứng dụng */
     max-width: 1300px; /* Nới rộng một chút để bảng nhiều cột hiển thị đẹp hơn */
     margin: 0 auto;
     background: white;
@@ -32,6 +35,7 @@ h2 {
 }
 
 .statistics-box {
+    /* Hộp thống kê: tổng lượt, thường, ưu tiên */
     display: flex;
     gap: 40px;
     background: #e9ecef;
@@ -47,10 +51,12 @@ h2 {
 }
 
 .action-bar {
+    /* Thanh chứa nút hành động (Add booking) */
     margin-bottom: 20px;
 }
 
 .btn {
+    /* Kiểu cơ bản cho các nút */
     padding: 9px 18px;
     border: none;
     border-radius: 4px;
@@ -70,6 +76,7 @@ h2 {
 .btn-secondary:hover { background-color: #5a6268; }
 
 .student-table {
+    /* Bảng hiển thị danh sách bookings */
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
@@ -103,6 +110,7 @@ h2 {
 
 /* MODAL POPUP */
 .modal {
+    /* Overlay modal: căn giữa nội dung modal */
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(0,0,0,0.5);
@@ -113,6 +121,7 @@ h2 {
 }
 
 .modal-content {
+    /* Nội dung modal: kích thước cố định và scroll nếu quá dài */
     background: white;
     padding: 25px 30px;
     border-radius: 8px;
@@ -129,6 +138,7 @@ h2 {
 }
 
 .form-group {
+    /* Khoảng cách giữa các nhóm input */
     margin-bottom: 12px;
 }
 
@@ -185,6 +195,7 @@ h2 {
 }
 
 .error-message {
+    /* Kiểu cho span hiển thị lỗi */
     color: var(--danger-color);
     font-size: 0.8rem;
     margin-top: 4px;
@@ -209,6 +220,7 @@ h2 {
 }
 
 .form-actions {
+    /* Nút Lưu / Hủy ở cuối form */
     display: flex;
     justify-content: flex-end;
     gap: 10px;
